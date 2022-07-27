@@ -54,4 +54,14 @@ public class ProductsServiceImpl implements ProductsService {
 
         return returnValue;
     }
+
+    @Override
+    public ProductsDto findByProductId(String productId) {
+        ModelMapper modelMapper = new ModelMapper();
+        ProductsEntity productsEntity = productsRepository.findByProductId(productId);
+        if(productsEntity == null)throw new RuntimeException("Product not found");
+        ProductsDto returnValue = modelMapper.map(productsEntity, ProductsDto.class);
+
+        return returnValue;
+    }
 }

@@ -32,6 +32,15 @@ public class ProductsController {
         return returnValue;
     }
 
+    @GetMapping(path = "/{productId}")
+    public ProductsRest findByProductId(@PathVariable String productId){
+        ModelMapper modelMapper = new ModelMapper();
+        ProductsDto productsDto = productsService.findByProductId(productId);
+        ProductsRest returnValue = modelMapper.map(productsDto, ProductsRest.class);
+
+        return returnValue;
+    }
+
     @PostMapping
     public ProductsRest createProducts(@RequestBody ProductsDetailsRequestModel productsDetails) {
 

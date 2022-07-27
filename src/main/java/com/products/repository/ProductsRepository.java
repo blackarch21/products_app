@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductsRepository extends PagingAndSortingRepository<ProductsEntity, Long> {
 
     ProductsEntity findByProductName(String productName);
+    ProductsEntity findByProductId(String productId);
 }
