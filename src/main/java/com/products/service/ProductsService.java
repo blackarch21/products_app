@@ -8,4 +8,5 @@ public interface ProductsService {
     List<ProductsDto> getProducts(int page, int limit);
     ProductsDto createProduct(ProductsDto productsDto);
     ProductsDto findByProductId(String productId);
+    ProductsDto updateUser(String productId,ProductsDto productsDto);
 }

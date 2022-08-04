@@ -52,4 +52,15 @@ public class ProductsController {
         return returnValue;
 
     }
+
+    @PutMapping(path = "/{productId}")
+    public ProductsRest updateProduct(@PathVariable String productId,@RequestBody ProductsDetailsRequestModel productsDetails){
+
+        ModelMapper modelMapper= new ModelMapper();
+        ProductsDto productsDto = modelMapper.map(productsDetails, ProductsDto.class);
+
+        ProductsDto createdProduct = productsService.updateUser(productId,productsDto);
+        ProductsRest returnValue = modelMapper.map(createdProduct, ProductsRest.class);
+        return returnValue;
+    }
 }

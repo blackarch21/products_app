@@ -64,4 +64,18 @@ public class ProductsServiceImpl implements ProductsService {
 
         return returnValue;
     }
+
+    @Override
+    public ProductsDto updateUser(String productId, ProductsDto productsDto) {
+        ModelMapper modelMapper = new ModelMapper();
+        ProductsEntity productsEntity = productsRepository.findByProductId(productId);
+        if(productsEntity == null)throw new RuntimeException("Record not found");
+        productsEntity.setProductName(productsDto.getProductName());
+        productsEntity.setMrp(productsDto.getMrp());
+        productsEntity.setRate(productsDto.getRate());
+
+        ProductsEntity updatedProduct = productsRepository.save(productsEntity);
+        ProductsDto returnValue = modelMapper.map(updatedProduct, ProductsDto.class);
+        return returnValue;
+    }
 }
