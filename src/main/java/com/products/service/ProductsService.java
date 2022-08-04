@@ -9,4 +9,5 @@ public interface ProductsService {
     ProductsDto createProduct(ProductsDto productsDto);
     ProductsDto findByProductId(String productId);
     ProductsDto updateUser(String productId,ProductsDto productsDto);
+    void deleteUser(String productId);
 }

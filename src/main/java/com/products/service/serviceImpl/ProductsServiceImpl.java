@@ -66,6 +66,14 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
+    public void deleteUser(String productId) {
+
+        ProductsEntity productsEntity = productsRepository.findByProductId(productId);
+        if(productsEntity == null)throw new RuntimeException("product not found");
+        productsRepository.delete(productsEntity);
+    }
+
+    @Override
     public ProductsDto updateUser(String productId, ProductsDto productsDto) {
         ModelMapper modelMapper = new ModelMapper();
         ProductsEntity productsEntity = productsRepository.findByProductId(productId);

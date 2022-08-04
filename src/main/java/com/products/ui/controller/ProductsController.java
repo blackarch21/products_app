@@ -3,6 +3,7 @@ package com.products.ui.controller;
 import com.products.service.ProductsService;
 import com.products.shared.dto.ProductsDto;
 import com.products.ui.request.ProductsDetailsRequestModel;
+import com.products.ui.response.OperationStatusModel;
 import com.products.ui.response.ProductsRest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,15 @@ public class ProductsController {
         ProductsDto createdProduct = productsService.updateUser(productId,productsDto);
         ProductsRest returnValue = modelMapper.map(createdProduct, ProductsRest.class);
         return returnValue;
+    }
+    @DeleteMapping(path = "/{productId}")
+    public OperationStatusModel deleteProduct(@PathVariable String productId){
+        OperationStatusModel status = new OperationStatusModel();
+        status.setOperationName("DELETE");
+        status.setOperationStatus("SUCCESS");
+
+        productsService.deleteUser(productId);
+
+        return status;
     }
 }
